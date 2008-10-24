@@ -11,6 +11,13 @@ class PagesScenario < Scenario::Base
     create_page "First"
     create_page "Another"
     create_page "Radius", :body => "<r:title />"
+    create_page "Parent Of Hiding" do
+      create_page "Hiding", :status_id => Status[:hidden].id do
+        create_page "Mchiding" do
+          create_page "Mcmchiding"
+        end
+      end
+    end
     create_page "Parent" do
       create_page "Child" do
         create_page "Grandchild" do

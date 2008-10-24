@@ -635,6 +635,11 @@ describe "Standard Tags" do
       page(:great_grandchild).should render('<r:breadcrumbs />').as(expected)
     end
 
+    it 'should render the text without a link for unpublished pages' do
+      expected = %{<a href="/">Home</a> &gt; <a href="/parent-of-hiding/">Parent Of Hiding</a> &gt; Hiding &gt; <a href="/parent-of-hiding/hiding/mchiding/">Mchiding</a> &gt; Mcmchiding}
+      page(:mcmchiding).should render('<r:breadcrumbs />').as(expected)
+    end
+
     it "with a 'separator' attribute should use the separator instead of &gt;" do
       expected = %{<a href="/">Home</a> :: Parent}
       page(:parent).should render('<r:breadcrumbs separator=" :: " />').as(expected)

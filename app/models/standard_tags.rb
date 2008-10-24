@@ -501,7 +501,7 @@ module StandardTags
     nolinks = (tag.attr['nolinks'] == 'true')
     page.ancestors.each do |ancestor|
       tag.locals.page = ancestor
-      if nolinks
+      if nolinks || ancestor.status != Status[:published]
         breadcrumbs.unshift tag.render('breadcrumb')
       else
         breadcrumbs.unshift %{<a href="#{tag.render('url')}">#{tag.render('breadcrumb')}</a>}
